@@ -36,13 +36,13 @@ export function Navbar() {
             Find Stores
           </Link>
           <Link
-            href="/about"
+            href="/about-us"
             className="hover:text-foreground/80 text-foreground/60 transition-colors"
           >
             About Us
           </Link>
           <Link
-            href="/contact"
+            href="/contact-us"
             className="hover:text-foreground/80 text-foreground/60 transition-colors"
           >
             Contact

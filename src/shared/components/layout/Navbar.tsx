@@ -47,6 +47,12 @@ export function Navbar() {
           >
             Contact
           </Link>
+          <Link
+            href="/faqs"
+            className="hover:text-foreground/80 text-foreground/60 transition-colors"
+          >
+            FAQs
+          </Link>
         </nav>
         <div className="flex items-center gap-4">
           <Link href="/login">

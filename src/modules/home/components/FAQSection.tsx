@@ -1,70 +1,62 @@
 "use client";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/shared/components/ui/accordion";
-
-const faqs = [
-  {
-    question: "How does the pricing work?",
-    answer:
-      "Pricing is set by individual stores. We show you a comparison so you can choose the best option. Generally, B&W prints start from $0.02 and Color prints from $0.10 per page.",
-  },
-  {
-    question: "Is my document safe?",
-    answer:
-      "Yes, absolutely. Your documents are encrypted during upload and automatically deleted from our servers 24 hours after printing is completed.",
-  },
-  {
-    question: "How long does delivery take?",
-    answer:
-      "It depends on the store you choose. Most stores offer same-day delivery within 2-4 hours. You can see the estimated delivery time before placing an order.",
-  },
-  {
-    question: "What file formats are supported?",
-    answer:
-      "We support PDF, DOCX, and JPEG files. For best results, we recommend converting your documents to PDF before uploading.",
-  },
-  {
-    question: "Can I cancel an order?",
-    answer:
-      "You can cancel an order within 5 minutes of placing it. Once the store starts processing your print, cancellations are no longer possible.",
-  },
-  {
-    question: "Do I need to visit the store physically?",
-    answer:
-      "Not at all! You can choose home delivery and get your documents delivered to your doorstep. Store pickup is optional.",
-  },
-];
+import { Button } from "@/shared/components/ui/button";
+import { motion } from "framer-motion";
+import { ArrowRight, HelpCircle } from "lucide-react";
+import Link from "next/link";
 
 export function FAQSection() {
   return (
-    <section className="py-12 md:py-24">
-      <div className="container max-w-3xl">
-        <div className="mb-10 text-center md:mb-16">
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-muted-foreground mt-4 text-lg">
-            Everything you need to know about Print My Document
-          </p>
-        </div>
+    <section className="bg-muted/30 py-20 md:py-32">
+      <div className="container px-4 md:px-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-6 flex justify-center"
+          >
+            <div className="bg-primary/10 rounded-full p-4">
+              <HelpCircle className="text-primary h-10 w-10" />
+            </div>
+          </motion.div>
 
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left text-lg">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-base">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl"
+          >
+            Have questions? We&apos;ve got answers.
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-muted-foreground mb-10 text-lg leading-relaxed md:text-xl"
+          >
+            Whether you&apos;re curious about pricing, delivery options, or file
+            formats, our comprehensive FAQ page has everything you need to know
+            to get started.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Button size="lg" className="h-auto px-8 py-3 text-lg" asChild>
+              <Link href="/faqs">
+                Visit Help Center <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

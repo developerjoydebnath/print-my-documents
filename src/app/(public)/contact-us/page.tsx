@@ -20,14 +20,18 @@ import {
 } from "@/shared/components/ui/select";
 import { Textarea } from "@/shared/components/ui/textarea";
 import {
+  IconBrandFacebook,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+  IconBrandTwitter,
+} from "@tabler/icons-react";
+import { motion } from "framer-motion";
+import {
   ArrowRight,
   Clock,
-  Facebook,
   Handshake,
   HelpCircle,
-  Instagram,
   Lightbulb,
-  Linkedin,
   Mail,
   MapPin,
   MessageSquare,
@@ -36,7 +40,6 @@ import {
   Send,
   ShieldCheck,
   Store,
-  Twitter,
   User,
   Zap,
 } from "lucide-react";
@@ -46,18 +49,33 @@ export default function ContactUsPage() {
   return (
     <div className="flex min-h-screen flex-col">
       {/* 1. Hero Section */}
-      <section className="bg-muted/30 relative overflow-hidden py-20 md:py-32">
+      <section className="bg-muted/30 relative flex h-screen items-center justify-center overflow-hidden">
         <div className="relative z-10 container px-4 text-center md:px-6">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl"
+          >
             Get in <span className="text-primary">touch</span> with us
-          </h1>
-          <p className="text-muted-foreground mx-auto mt-6 max-w-[700px] text-xl leading-relaxed">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-muted-foreground mx-auto mt-6 max-w-[700px] text-xl leading-relaxed"
+          >
             Have a question, need help with an order, or want to partner with
             us?
             <br className="hidden md:inline" /> We&apos;d love to hear from you.
-          </p>
+          </motion.p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-8 flex flex-wrap justify-center gap-4"
+          >
             <Badge variant="outline" className="px-4 py-2 text-sm">
               <Zap className="text-primary mr-2 h-4 w-4" /> Fast response
             </Badge>
@@ -69,7 +87,7 @@ export default function ContactUsPage() {
               <ShieldCheck className="text-primary mr-2 h-4 w-4" /> Your data is
               safe
             </Badge>
-          </div>
+          </motion.div>
         </div>
 
         {/* Background Elements */}
@@ -124,22 +142,27 @@ export default function ContactUsPage() {
                 desc: "Data protection, secure payments, policies",
               },
             ].map((item, i) => (
-              <Card
+              <motion.div
                 key={i}
-                className="border-muted cursor-pointer transition-shadow hover:shadow-md"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true }}
               >
-                <CardHeader className="flex flex-row items-start gap-4 space-y-0">
-                  <div className="bg-primary/10 rounded-xl p-3">
-                    <item.icon className="text-primary h-6 w-6" />
-                  </div>
-                  <div className="space-y-1">
-                    <CardTitle className="text-base">{item.title}</CardTitle>
-                    <CardDescription className="text-xs">
-                      {item.desc}
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-              </Card>
+                <Card className="border-muted h-full cursor-pointer transition-shadow hover:shadow-md">
+                  <CardHeader className="flex flex-row items-start gap-4 space-y-0">
+                    <div className="bg-primary/10 rounded-xl p-3">
+                      <item.icon className="text-primary h-6 w-6" />
+                    </div>
+                    <div className="space-y-1">
+                      <CardTitle className="text-base">{item.title}</CardTitle>
+                      <CardDescription className="text-xs">
+                        {item.desc}
+                      </CardDescription>
+                    </div>
+                  </CardHeader>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -147,7 +170,13 @@ export default function ContactUsPage() {
 
       {/* 3. Contact Form & 4. Direct Info */}
       <section className="bg-muted/30 py-12 md:py-24">
-        <div className="container px-4 md:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="container px-4 md:px-6"
+        >
           <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-3">
             {/* Contact Form (2 cols) */}
             <div className="lg:col-span-2">
@@ -219,7 +248,7 @@ export default function ContactUsPage() {
                       <Textarea
                         id="message"
                         placeholder="Please describe your issue in detail..."
-                        className="min-h-[240px]"
+                        className="min-h-60"
                       />
                     </div>
 
@@ -329,17 +358,17 @@ export default function ContactUsPage() {
                       <h4 className="font-semibold">Follow Us</h4>
                       <div className="flex gap-4">
                         {[
-                          { icon: Facebook, href: "#" },
-                          { icon: Twitter, href: "#" },
-                          { icon: Instagram, href: "#" },
-                          { icon: Linkedin, href: "#" },
+                          { icon: IconBrandFacebook, href: "#" },
+                          { icon: IconBrandTwitter, href: "#" },
+                          { icon: IconBrandInstagram, href: "#" },
+                          { icon: IconBrandLinkedin, href: "#" },
                         ].map((social, i) => (
                           <a
                             key={i}
                             href={social.href}
-                            className="bg-primary/5 hover:bg-primary/10 text-primary flex h-10 w-10 items-center justify-center rounded-full transition-colors"
+                            className="bg-primary/5 hover:bg-primary/10 hover:text-primary text-primary/60 flex h-10 w-10 items-center justify-center rounded-full transition-colors"
                           >
-                            <social.icon className="h-5 w-5" />
+                            <social.icon className="h-6 w-6" />
                           </a>
                         ))}
                       </div>
@@ -349,7 +378,7 @@ export default function ContactUsPage() {
               </Card>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* 6. Store Partner & 7. Feedback */}
@@ -357,7 +386,13 @@ export default function ContactUsPage() {
         <div className="container px-4 md:px-6">
           <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
             {/* Store Partner */}
-            <div className="bg-muted/20 flex flex-col items-start justify-between rounded-2xl border p-8">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-muted/20 flex flex-col items-start justify-between rounded-2xl border p-8"
+            >
               <div className="space-y-4">
                 <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-xl">
                   <Store className="text-primary h-6 w-6" />
@@ -375,10 +410,16 @@ export default function ContactUsPage() {
                   Become a Partner <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-            </div>
+            </motion.div>
 
             {/* Feedback */}
-            <div className="bg-muted/20 flex flex-col items-start justify-between rounded-2xl border p-8">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-muted/20 flex flex-col items-start justify-between rounded-2xl border p-8"
+            >
               <div className="space-y-4">
                 <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-xl">
                   <Lightbulb className="text-primary h-6 w-6" />
@@ -394,7 +435,7 @@ export default function ContactUsPage() {
                   Share Feedback <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -402,9 +443,15 @@ export default function ContactUsPage() {
       {/* 8. FAQ Teaser */}
       <section className="bg-muted/30 py-12 md:py-20">
         <div className="container px-4 text-center md:px-6">
-          <h2 className="mb-8 text-3xl font-bold tracking-tight">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mb-8 text-3xl font-bold tracking-tight"
+          >
             Common questions
-          </h2>
+          </motion.h2>
           <div className="mb-8 flex flex-wrap justify-center gap-4">
             {[
               "How do I place an order?",
@@ -412,31 +459,51 @@ export default function ContactUsPage() {
               "Is online payment secure?",
               "How can stores join?",
             ].map((q, i) => (
-              <Link
+              <motion.div
                 key={i}
-                href="/faq"
-                className="bg-background hover:bg-muted rounded-full border px-6 py-3 text-sm font-medium shadow-sm transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                viewport={{ once: true }}
               >
-                {q}
-              </Link>
+                <Link
+                  href="/faq"
+                  className="bg-background hover:bg-muted inline-block rounded-full border px-6 py-3 text-sm font-medium shadow-sm transition-colors"
+                >
+                  {q}
+                </Link>
+              </motion.div>
             ))}
           </div>
-          <Button variant="link" className="text-primary" asChild>
-            <Link href="/faq">
-              Visit Help Center <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Button variant="link" className="text-primary" asChild>
+              <Link href="/faq">
+                Visit Help Center <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </section>
 
       {/* 9. Final Reassurance CTA */}
       <section className="bg-background border-t py-12">
-        <div className="container px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="container px-4 text-center"
+        >
           <p className="text-muted-foreground text-xl font-medium">
             We’re not just a platform — we’re your{" "}
             <span className="text-foreground font-bold">printing partner</span>.
           </p>
-        </div>
+        </motion.div>
       </section>
     </div>
   );
